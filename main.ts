@@ -1052,7 +1052,42 @@ class DMVaultSettingTab extends PluginSettingTab {
 						const imported = JSON.parse(text);
 						if (!Array.isArray(imported)) { new Notice("Invalid file format."); return; }
 						// Assign new IDs to avoid conflicts
-						const withIds = imported.map((c: Creature) => ({ ...c, id: uid() }));
+						const withIds = imported.map((c: any) => ({
+    id: uid(),
+    name: c.Name ?? c.name ?? "",
+    source: c.Source ?? c.source ?? "",
+    size: c.Size ?? c.size ?? "",
+    type: c.Type ?? c.type ?? "",
+    alignment: c.Alignment ?? c.alignment ?? "",
+    ac: String(c.AC ?? c.ac ?? ""),
+    hp: String(c.HP ?? c.hp ?? ""),
+    speed: c.Speed ?? c.speed ?? "",
+    strength: Number(c.Strength ?? c.strength ?? 10),
+    dexterity: Number(c.Dexterity ?? c.dexterity ?? 10),
+    constitution: Number(c.Constitution ?? c.constitution ?? 10),
+    intelligence: Number(c.Intelligence ?? c.intelligence ?? 10),
+    wisdom: Number(c.Wisdom ?? c.wisdom ?? 10),
+    charisma: Number(c.Charisma ?? c.charisma ?? 10),
+    savingThrows: c["Saving Throws"] ?? c.savingThrows ?? "",
+    skills: c.Skills ?? c.skills ?? "",
+    damageVulnerabilities: c["Damage Vulnerabilities"] ?? c.damageVulnerabilities ?? "",
+    damageResistances: c["Damage Resistances"] ?? c.damageResistances ?? "",
+    damageImmunities: c["Damage Immunities"] ?? c.damageImmunities ?? "",
+    conditionImmunities: c["Condition Immunities"] ?? c.conditionImmunities ?? "",
+    senses: c.Senses ?? c.senses ?? "",
+    languages: c.Languages ?? c.languages ?? "",
+    cr: String(c.CR ?? c.cr ?? ""),
+    traits: c.Traits ?? c.traits ?? "",
+    actions: c.Actions ?? c.actions ?? "",
+    bonusActions: c["Bonus Actions"] ?? c.bonusActions ?? "",
+    reactions: c.Reactions ?? c.reactions ?? "",
+    legendaryActions: c["Legendary Actions"] ?? c.legendaryActions ?? "",
+    mythicActions: c["Mythic Actions"] ?? c.mythicActions ?? "",
+    lairActions: c["Lair Actions"] ?? c.lairActions ?? "",
+    regionalEffects: c["Regional Effects"] ?? c.regionalEffects ?? "",
+    environment: c.Environment ?? c.environment ?? "",
+    treasure: c.Treasure ?? c.treasure ?? "",
+}));((c: Creature) => ({ ...c, id: uid() }));
 						this.plugin.settings.creatures.push(...withIds);
 						await this.plugin.saveSettings();
 						this.plugin.refreshBestiaryView();
