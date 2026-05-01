@@ -1,0 +1,11 @@
+{
+  "id": "dm-vault",
+  "name": "DM Vault",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "A DM's complete campaign toolkit — bestiary, statblocks, and initiative tracker.",
+  "author": "Your Name",
+  "authorUrl": "https://github.com/yourusername/dm-vault",
+  "fundingUrl": "",
+  "isDesktopOnly": true
+}
